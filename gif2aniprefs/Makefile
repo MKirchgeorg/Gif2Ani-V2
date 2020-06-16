@@ -1,9 +1,8 @@
-ARCHS = armv7 arm64 arm64e
+ARCHS = arm64 arm64e
+TARGET = iphone:clang:11.2:11.2
 
 include $(THEOS)/makefiles/common.mk
 
-SDKVERSION = 9.3
-SYSROOT = $(THEOS)/sdks/iPhoneOS9.3.sdk
 BUNDLE_NAME = gif2aniprefs
 gif2aniprefs_FILES = gif2ani2RootListController.m HBColorPickerCell.m
 gif2aniprefs_INSTALL_PATH = /Library/PreferenceBundles

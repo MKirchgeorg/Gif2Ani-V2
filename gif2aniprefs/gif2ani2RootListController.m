@@ -2,6 +2,8 @@
 #include <CepheiPrefs/HBSupportController.h>
 #include <AppSupport/CPDistributedMessagingCenter.h>
 #import <Photos/Photos.h>
+//Needed for new respring method
+#import <spawn.h>
 
 @implementation gif2ani2RootListController
 
@@ -52,12 +54,12 @@
 	}
 
 	[self dismissViewControllerAnimated:YES completion:^{
-		
-	}];
-	
 
-	
-    
+	}];
+
+
+
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -74,10 +76,12 @@
 }
 
 -(void)respring{
-	#pragma clang diagnostic push
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	system("killall -9 backboardd");
-	#pragma clang diagnostic pop
+	//Code from Muirey03 PowerModule as the Respring Method by wizage is not working anymore
+	pid_t pid;
+	int status;
+	const char* args[] = {"sbreload", NULL};
+	posix_spawn(&pid, "/usr/bin/sbreload", NULL, NULL, (char* const*)args, NULL);
+	waitpid(pid, &status, WEXITED);
 }
 
 @end
